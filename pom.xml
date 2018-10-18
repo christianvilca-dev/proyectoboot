@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Nos indica si nuestro pom es sintacticamente valido -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<!-- Informacion del proyecto -->
 	<groupId>com.christian</groupId>
 	<artifactId>proyectoboot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version> <!-- SNAPSHOP -> aun se esta trabajando en esta version -->
 	<packaging>jar</packaging>
 
 	<name>proyectoboot</name>
 	<description></description>
 
+	<!-- Nuetra aplicacion hereda de un spring boot -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -18,12 +21,14 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
+	<!-- Propiedades de uso libre -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
 
+	<!-- Dependencias - librerias que se necesita -->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -41,6 +46,7 @@
 		</dependency>
 	</dependencies>
 
+	<!-- Funcionalidades que se agrega a maven como ayuda a la gestion del proyecto -->
 	<build>
 		<plugins>
 			<plugin>
