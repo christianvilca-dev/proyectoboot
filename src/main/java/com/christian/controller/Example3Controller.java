@@ -53,8 +53,12 @@ public class Example3Controller {
 	// Envia la peticion POST
 	@PostMapping("/addperson")
 	public ModelAndView addPerson(@ModelAttribute("person") Person person) {
+		LOGGER.info("METHOD: 'addPerson' -- PARAM: '" + person + "'");
+//		2018-10-19 13:42:29.417  INFO 13480 --- [nio-8080-exec-3] c.c.controller.Example3Controller        : METHOD: 'addPerson' -- PARAM: 'Person [name=Jon, age=45]'
 		ModelAndView mav = new ModelAndView(RESULT_VIEW);
 		mav.addObject("person", person);
+		LOGGER.info("TEMPLATE: '" + RESULT_VIEW + "' -- DATA: '" + person + "'");
+//		2018-10-19 13:45:58.268  INFO 26468 --- [nio-8080-exec-5] c.c.controller.Example3Controller        : TEMPLATE: 'result' -- DATA: 'Person [name=Jon, age=45]'
 		return mav;
 	}
 }
