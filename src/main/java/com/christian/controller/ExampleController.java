@@ -1,6 +1,7 @@
 package com.christian.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,17 +13,20 @@ public class ExampleController {
 	
 	public static final String EXAMPLE_VIEW="example";
 
-	// Primera forma
+	// Primera forma -> Para redirecciones, no hay insertar datos o se insertan muy pocos
 	//@RequestMapping(value="/exampleString", method=RequestMethod.GET)
 	@GetMapping("/exampleString")
-	public String exampleString() {
+	public String exampleString(Model model) {
+		model.addAttribute("name", "Jon");
 		return EXAMPLE_VIEW; // la vista a retornar y no es necesario el .html
 	}
 	
-	// Segunda forma
+	// Segunda forma --> Para insertar muchos datos
 	//@RequestMapping(value="/exampleMAV", method=RequestMethod.GET)
 	@GetMapping("/exampleMAV")
 	public ModelAndView exampleMAV() {
-		return new ModelAndView(EXAMPLE_VIEW);
+		ModelAndView mav= new ModelAndView(EXAMPLE_VIEW);
+		mav.addObject("name", "Mikel");
+		return mav;
 	}
 }
