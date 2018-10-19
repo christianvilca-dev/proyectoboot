@@ -6,7 +6,7 @@ spring:
   jpa:
     show-sql: true # Para que muestre el sql en el log
     hibernate:
-      ddl-auto: update # Escanea todas la entitys, compara y Actualiza la base de datos, dependiendo de las entidades y no al revez
+      ddl-auto: update # Escanea todas la entitys, compara y actualiza la base de datos, dependiendo de las entidades y no al reves
       naming:
         strategy: org.hibernate.cfg.ImprovedNamingStrategy # Forma del dialecto que va ha utilizar a la hora de hacer las consultas
     properties:
