@@ -1,5 +1,8 @@
 package com.christian.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +22,7 @@ public class ExampleController {
 	//@RequestMapping(value="/exampleString", method=RequestMethod.GET)
 	@GetMapping("/exampleString")
 	public String exampleString(Model model) {
-		model.addAttribute("person", new Person("Jon", 23));
+		model.addAttribute("people", getPeople());
 		return EXAMPLE_VIEW; // la vista a retornar y no es necesario el .html
 	}
 	
@@ -28,7 +31,16 @@ public class ExampleController {
 	@GetMapping("/exampleMAV")
 	public ModelAndView exampleMAV() {
 		ModelAndView mav= new ModelAndView(EXAMPLE_VIEW);
-		mav.addObject("person", new Person("Mikel", 30));
+		mav.addObject("people", getPeople());
 		return mav;
+	}
+	
+	private List<Person> getPeople(){
+		List<Person> people = new ArrayList<>();
+		people.add(new Person("Jon", 23));
+		people.add(new Person("Mikel", 30));
+		people.add(new Person("Eva", 43));
+		people.add(new Person("Peter", 18));
+		return people;
 	}
 }
