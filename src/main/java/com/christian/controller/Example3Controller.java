@@ -19,9 +19,14 @@ public class Example3Controller {
 	public static final String RESULT_VIEW = "result";
 	
 	// Primera forma
-	@GetMapping("/")
+	/*@GetMapping("/")
 	public String redirect() {
 		return "redirect:/example3/showform";
+	}*/
+	
+	@GetMapping("/")
+	public RedirectView redirect() {
+	    return new RedirectView("/example3/showform");
 	}
 	
 	// Muestra el formulario
