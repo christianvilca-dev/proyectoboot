@@ -1,9 +1,13 @@
 package com.christian.controller;
 
+import javax.validation.Valid;
+import javax.websocket.Decoder.Binary;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,11 +56,17 @@ public class Example3Controller {
 	
 	// Envia la peticion POST
 	@PostMapping("/addperson")
-	public ModelAndView addPerson(@ModelAttribute("person") Person person) {
+	public ModelAndView addPerson(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult) { // Permite validacion de spring "@valid"
+																												// BindingResult -> verifica los campos y añade los errores
 		LOGGER.info("METHOD: 'addPerson' -- PARAM: '" + person + "'");
 //		2018-10-19 13:42:29.417  INFO 13480 --- [nio-8080-exec-3] c.c.controller.Example3Controller        : METHOD: 'addPerson' -- PARAM: 'Person [name=Jon, age=45]'
-		ModelAndView mav = new ModelAndView(RESULT_VIEW);
-		mav.addObject("person", person);
+		ModelAndView mav = new ModelAndView();
+		if(bindingResult.hasErrors()) {
+			mav.setViewName(FORM_VIEW); // Tambien devuelve un objeto "fields" con los errores
+		} else {
+			mav.setViewName(RESULT_VIEW);
+			mav.addObject("person", person);
+		}
 		LOGGER.info("TEMPLATE: '" + RESULT_VIEW + "' -- DATA: '" + person + "'");
 //		2018-10-19 13:45:58.268  INFO 26468 --- [nio-8080-exec-5] c.c.controller.Example3Controller        : TEMPLATE: 'result' -- DATA: 'Person [name=Jon, age=45]'
 		return mav;
