@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.christian.model.Person;
+
 @Controller // Se indica que es un bean "@component" y es encargado de la capa presentacion es el hijo "@controller"
 @RequestMapping("/example")// Indica el path entrada por esta clase
 public class ExampleController {
@@ -17,7 +19,7 @@ public class ExampleController {
 	//@RequestMapping(value="/exampleString", method=RequestMethod.GET)
 	@GetMapping("/exampleString")
 	public String exampleString(Model model) {
-		model.addAttribute("name", "Jon");
+		model.addAttribute("person", new Person("Jon", 23));
 		return EXAMPLE_VIEW; // la vista a retornar y no es necesario el .html
 	}
 	
@@ -26,7 +28,7 @@ public class ExampleController {
 	@GetMapping("/exampleMAV")
 	public ModelAndView exampleMAV() {
 		ModelAndView mav= new ModelAndView(EXAMPLE_VIEW);
-		mav.addObject("name", "Mikel");
+		mav.addObject("person", new Person("Mikel", 30));
 		return mav;
 	}
 }
