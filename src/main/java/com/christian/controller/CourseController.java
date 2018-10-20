@@ -30,7 +30,7 @@ public class CourseController {
 	public ModelAndView listAllCourses() {
 		LOG.info("Call: " + "listAllCourses()");
 		ModelAndView mav = new ModelAndView(COURSES_VIEW);
-		mav.addObject("course", new Course()); // Error en la vista si no se pone
+		mav.addObject("course", new Course()); // Error en la vista si no se pone // Estamos trabajando con entities y lo ideal seria trabajar con modelos
 		mav.addObject("courses", courseService.listAllCourses());
 		return mav;
 	}
